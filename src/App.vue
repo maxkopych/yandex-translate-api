@@ -25,7 +25,7 @@
 <script>
 
   import axios from 'axios';
-  import {parseString} from 'xml2js';
+  import { parseString } from 'xml2js';
 
   export default {
     name: 'app',
@@ -39,11 +39,11 @@
       }
     },
     methods:{
-      translate(){
+      translate: function () {
         axios.post(`https://translate.yandex.net/api/v1.5/tr/translate?format=plain&lang=en-${this.selectedLanguage}&key=${this.key}&text=${encodeURI(this.text)}`)
           .then(response => {
             let self = this;
-            parseString(response.data,(err,result)=>{
+            parseString(response.data, (err, result) => {
               self.translation = result.Translation.text[0];
               console.log(result.Translation)
             });
